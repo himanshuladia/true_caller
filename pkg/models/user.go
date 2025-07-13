@@ -22,16 +22,16 @@ type User struct {
 
 // Validate checks the User fields for business rule compliance.
 func (u *User) Validate() error {
-	if len(u.PhoneNumber) != 12 || !strings.HasPrefix(u.PhoneNumber, "91") {
+	if len(u.GetPhoneNumber()) != 12 || !strings.HasPrefix(u.GetPhoneNumber(), "91") {
 		return errors.New("phone number must be 12 digits and start with '91'")
 	}
-	if !regexp.MustCompile(`^91[0-9]{10}$`).MatchString(u.PhoneNumber) {
+	if !regexp.MustCompile(`^91[0-9]{10}$`).MatchString(u.GetPhoneNumber()) {
 		return errors.New("phone number must be numeric and 10 digits after '91'")
 	}
-	if len(strings.TrimSpace(u.Name)) == 0 {
+	if len(strings.TrimSpace(u.GetName())) == 0 {
 		return errors.New("name is required")
 	}
-	if len(u.Name) > 100 {
+	if len(u.GetName()) > 100 {
 		return errors.New("name must be at most 100 characters")
 	}
 	return nil

@@ -17,7 +17,7 @@ type Contact struct {
 
 // Validate checks the Contact fields for business rule compliance.
 func (c *Contact) Validate() error {
-	user := User{PhoneNumber: c.PhoneNumber, Name: c.Name}
+	user := User{PhoneNumber: c.GetPhoneNumber(), Name: c.GetName()}
 	return user.Validate()
 }
 
@@ -50,10 +50,10 @@ type PhoneBook struct {
 
 // Validate checks the PhoneBook fields and all contained contacts for business rule compliance.
 func (pb *PhoneBook) Validate() error {
-	if err := (&User{PhoneNumber: pb.PhoneNumber, Name: "dummy"}).Validate(); err != nil {
+	if err := (&User{PhoneNumber: pb.GetPhoneNumber(), Name: "dummy"}).Validate(); err != nil {
 		return errors.New("invalid phone book owner: " + err.Error())
 	}
-	for i, c := range pb.Contacts {
+	for i, c := range pb.GetContacts() {
 		if err := c.Validate(); err != nil {
 			return errors.New("invalid contact at index " + string(rune(i)) + ": " + err.Error())
 		}
