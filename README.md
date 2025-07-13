@@ -22,7 +22,6 @@ A minimal in-memory TrueCaller-like service in Go.
 
 ```
 Cred/
-  ├── cmd/truecaller-lite/main.go   # Application entry point
   ├── pkg/dao/                      # Data access layer (DAO, mocks, errors)
   ├── pkg/models/                   # Domain models
   ├── pkg/service/                  # Service layer and business logic
@@ -35,18 +34,14 @@ Cred/
 ### Prerequisites
 - Go 1.18+
 
-### Setup & Running
+### Setup
 ```sh
 # Clone the repository
 git clone <repo-url>
 cd Cred
 
-# Install dependencies (if any)
+# Install dependencies
 go mod tidy
-
-# Run the application
-cd cmd/truecaller-lite
-go run main.go
 ```
 
 ### Running Tests & Checking Coverage
@@ -81,7 +76,6 @@ go tool cover -func=coverage.out
 - `pkg/dao/` - Data access layer, including mocks and error definitions
 - `pkg/models/` - Domain models and validation
 - `pkg/service/` - Service interfaces and business logic
-- `cmd/truecaller-lite/` - Application entry point
 
 ---
 
