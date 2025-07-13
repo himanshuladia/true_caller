@@ -21,7 +21,7 @@ A minimal in-memory TrueCaller-like service in Go.
 ## Project Structure
 
 ```
-Cred/
+true_caller/
   ├── pkg/dao/                      # Data access layer (DAO, mocks, errors)
   ├── pkg/models/                   # Domain models
   ├── pkg/service/                  # Service layer and business logic
@@ -65,7 +65,7 @@ Cred/
 ```sh
 # Clone the repository
 git clone <repo-url>
-cd Cred
+cd true_caller
 
 # Install dependencies
 go mod tidy
