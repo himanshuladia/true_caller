@@ -73,11 +73,11 @@ func TestUserService_UploadContacts(t *testing.T) {
 			if tc.mockSetup != nil {
 				tc.mockSetup(userDAO, phoneBookDAO)
 			}
-			// svc := NewUserService(userDAO, phoneBookDAO)
-			// err := svc.UploadContacts(tc.ctx, tc.owner, tc.contacts)
-			// if (err != nil) != tc.wantErr {
-			// 	t.Errorf("expected error: %v, got: %v", tc.wantErr, err)
-			// }
+			svc := NewUserService(userDAO, phoneBookDAO)
+			err := svc.UploadContacts(tc.ctx, tc.owner, tc.contacts)
+			if (err != nil) != tc.wantErr {
+				t.Errorf("expected error: %v, got: %v", tc.wantErr, err)
+			}
 		})
 	}
 }
@@ -158,17 +158,17 @@ func TestUserService_LookupUser(t *testing.T) {
 			if tc.mockSetup != nil {
 				tc.mockSetup(userDAO)
 			}
-			// svc := NewUserService(userDAO, nil)
-			// name, spam, err := svc.LookupUser(tc.ctx, tc.phone)
-			// if (err != nil) != tc.wantErr {
-			// 	t.Errorf("expected error: %v, got: %v", tc.wantErr, err)
-			// }
-			// if name != tc.wantName {
-			// 	t.Errorf("expected name: %s, got: %s", tc.wantName, name)
-			// }
-			// if spam != tc.wantSpam {
-			// 	t.Errorf("expected spam: %v, got: %v", tc.wantSpam, spam)
-			// }
+			svc := NewUserService(userDAO, nil)
+			name, spam, err := svc.LookupUser(tc.ctx, tc.phone)
+			if (err != nil) != tc.wantErr {
+				t.Errorf("expected error: %v, got: %v", tc.wantErr, err)
+			}
+			if name != tc.wantName {
+				t.Errorf("expected name: %s, got: %s", tc.wantName, name)
+			}
+			if spam != tc.wantSpam {
+				t.Errorf("expected spam: %v, got: %v", tc.wantSpam, spam)
+			}
 		})
 	}
 }
