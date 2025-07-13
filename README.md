@@ -29,6 +29,33 @@ Cred/
   └── README.md                     # Project documentation
 ```
 
+---
+
+## Service Layer Overview
+
+### UserService
+- **Responsibilities:**
+  - Handles uploading contacts (validates and stores phone books for a user)
+  - Looks up user details (name, spam status) by phone number
+- **Key Methods:**
+  - `UploadContacts(ctx, ownerPhoneNumber, contacts)`
+  - `LookupUser(ctx, phoneNumber)`
+- **Business Logic:**
+  - Validates phone numbers and contact data
+  - Associates contacts with the uploader's phone number
+  - Returns the most recent name and spam status for a number
+
+### SpamService
+- **Responsibilities:**
+  - Periodically updates the spam status for all users (simulates a nightly job)
+- **Key Method:**
+  - `UpdateSpamStatus(ctx)`
+- **Business Logic:**
+  - Fetches all users and updates their spam status based on internal rules or a simulated data science model
+  - Designed for batch/background operation, not user-triggered
+
+---
+
 ## Getting Started
 
 ### Prerequisites
