@@ -38,8 +38,9 @@ A minimal in-memory TrueCaller-like service in Go.
 ```
 Cred/
   ├── cmd/truecaller-lite/main.go   # Application entry point
-  ├── internal/                     # Internal packages (business logic, handlers, etc.)
-  ├── pkg/                          # Shared packages (if needed)
+  ├── pkg/dao/                      # Data access layer (DAO, mocks, errors)
+  ├── pkg/models/                   # Domain models
+  ├── pkg/service/                  # Service layer and business logic
   ├── go.mod                        # Go module definition
   └── README.md                     # Project documentation
 ```
@@ -49,24 +50,62 @@ Cred/
 ### Prerequisites
 - Go 1.18+
 
-### Setup
+### Setup & Running
 ```sh
 # Clone the repository
-# cd into the project directory
-# Initialize Go modules (already done)
+git clone <repo-url>
+cd Cred
+
+# Install dependencies (if any)
+go mod tidy
 
 # Run the application
 cd cmd/truecaller-lite
 go run main.go
 ```
 
+### Running Tests & Checking Coverage
+```sh
+# Run all tests
+go test ./...
+
+# Run tests with coverage and generate a report
+go test ./... -coverprofile=coverage.out
+go tool cover -func=coverage.out
+```
+
 ---
 
-## Next Steps
-- Implement API endpoints and in-memory data structures
-- Add phone number validation
-- Add nightly job simulation for spam status
+## Development Guide
+
+### Code Quality
+- Use `go vet` and `golint` (if available) to check for code issues.
+- Write table-driven tests for all business logic and validation.
+- Use context.Context in all service and DAO methods for cancellation/timeouts.
+- Use shared error variables and errors.Is for error handling.
+- Keep business logic in the service layer, not in handlers or DAOs.
+
+### Contributing
+- Fork the repository and create a feature branch.
+- Write clear, descriptive commit messages.
+- Add/maintain GoDoc comments for all exported types and methods.
+- Ensure all tests pass before submitting a PR.
+- Run `go mod tidy` to keep dependencies clean.
+
+### Directory Conventions
+- `pkg/dao/` - Data access layer, including mocks and error definitions
+- `pkg/models/` - Domain models and validation
+- `pkg/service/` - Service interfaces and business logic
+- `cmd/truecaller-lite/` - Application entry point
 
 ---
 
-This README will be updated as the project evolves.
+## Code Quality & Coverage
+- Use `go vet ./...` to check for code issues.
+- Use `go test ./... -cover` to check test coverage. Aim for high functional coverage, not just line coverage.
+- Keep code and comments clean; remove redundant or outdated comments.
+
+---
+
+## Contact
+For questions or contributions, please open an issue or submit a pull request.
