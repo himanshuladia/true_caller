@@ -16,21 +16,6 @@ A minimal in-memory TrueCaller-like service in Go.
 - Returns: name (most recent), spam status.
 - Spam status is updated nightly by an internal job (not exposed via API).
 
-### 3. Spam Reporting
-- No public API for reporting spam; handled internally.
-
-### 4. User Management & Security
-- No user management or authentication required.
-- The uploader's phone number is used as the unique identifier for associating uploaded contacts.
-
-### 5. Data Privacy
-- No privacy requirements for this prototype.
-
-### 6. Technical/Operational
-- In-memory storage only (no database).
-- Target: 100K RPS.
-- No containerization or deployment setup required.
-
 ---
 
 ## Project Structure
